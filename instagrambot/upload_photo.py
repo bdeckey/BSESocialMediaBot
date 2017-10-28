@@ -1,5 +1,5 @@
 from InstagramAPI import InstagramAPI
-user, pwd = 'hear_from_bruno', 'groundsoftware'
+user, pwd = 'user', 'pwd'
 
 InstagramAPI = InstagramAPI(user, pwd)
 InstagramAPI.login()  # login
