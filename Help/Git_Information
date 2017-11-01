@@ -1,0 +1,10 @@
+-----GIT HELP----
+
+- update your folder -
+
+git status : notifies you of your current changes, type after every command to make sure its doing what you want. 
+
+-------To add code to the Main Cloud------
+git add * : adding all of the changes to the tracked code
+git commit -m  "information regarding changes" : adds the code to the staging area before final push
+git push origin (whatever branch usually "master") : final push to merge your code with the code in cloud
