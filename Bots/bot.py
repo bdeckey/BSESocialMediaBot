@@ -26,7 +26,7 @@ InstagramAPI.login()  # login
 
 
 # What the bot will tweet and post.
-image1 = input('File: ')
+image1 = "https://drive.google.com/open?id=0B2XWKkYW7FwWbnNwZ1dLWVJNbWs"
 message = input('Tell me what to say: ')
 
 

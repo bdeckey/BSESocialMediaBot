@@ -20,4 +20,12 @@ for sheet in gc.openall():
 	# if sheet.title != "Responses":
 	# 	gc.del_spreadsheet(sheet.id)
 	print("{} - {}".format(sheet.title, sheet.id))
+sh = gc.open("Responses")
+shid = sh.id
+print("ID: " + shid)
+sheet1 = sh.sheet1
+print("Sheet1: " + str(sheet1))
+print("Sheet1 title: " + sheet1.title)
+worksheet = sh.get_worksheet(0)
+print(worksheet)
 # gc.open_by_url("https://docs.google.com/spreadsheets/d/1AX8I4ts1VPyyCDxizclkyIvVHNz1M43ae2YxZANK4pQ/edit#gid=347313902")
