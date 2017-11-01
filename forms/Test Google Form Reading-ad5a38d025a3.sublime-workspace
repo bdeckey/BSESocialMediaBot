@@ -1,0 +1,311 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pages",
+				"pages_controller"
+			],
+			[
+				"hor",
+				"horz_flip_helper"
+			],
+			[
+				"acces",
+				"access_token_secret"
+			],
+			[
+				"consum",
+				"consumer_secret"
+			],
+			[
+				"rows",
+				"rowsInput"
+			],
+			[
+				"if",
+				"ifmain\tif __name__ == '__main__'"
+			],
+			[
+				"ur",
+				"url1"
+			],
+			[
+				"next",
+				"nextPasses"
+			],
+			[
+				"myL",
+				"myLat"
+			],
+			[
+				"lat",
+				"latitude"
+			],
+			[
+				"update",
+				"updatePosition"
+			],
+			[
+				"time",
+				"timeInterval"
+			],
+			[
+				"to",
+				"totalTime"
+			],
+			[
+				"data",
+				"data"
+			],
+			[
+				"NUM",
+				"NUMCATEGORIES"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"get",
+				"getAcceleration"
+			],
+			[
+				"num",
+				"numParticles"
+			],
+			[
+				"force",
+				"forceVector"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 239.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/kevin/Documents/CS17/workshops/workshopOcaml/banana-factorial",
+		"/home/kevin/Documents/CS17/hw08/reverse.ml",
+		"/home/kevin/Documents/CS17/hw08/vert_flip.ml",
+		"/home/kevin/Documents/CS17/hw08/horz_flip.ml",
+		"/home/kevin/Documents/CS17/hw08/transpose.ml",
+		"/home/kevin/Documents/CS17/hw08/proof.tex",
+		"/home/kevin/Documents/hackatbrown/2018.hackatbrown.org/hackatbrown2018/controllers/pages/__init__.py",
+		"/home/kevin/Documents/CS17/hw08/README.txt",
+		"/home/kevin/Documents/CS17/hw08/CS17setup.ml",
+		"/home/kevin/Documents/BSE/socialMediaBot/instagrambot/upload_photo.py",
+		"/home/kevin/Documents/BSE/socialMediaBot/twitterbot/helloTweepy.py",
+		"/home/kevin/Documents/BSE/socialMediaBot/README.md",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/home/home.ts",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/home/home.html",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/hello-ionic/hello-ionic.html",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/hello-ionic/hello-ionic.ts",
+		"/home/kevin/GitHub/LMNT/lmnt/src/app/app.html",
+		"/home/kevin/GitHub/LMNT/lmnt/src/app/main.ts",
+		"/home/kevin/GitHub/LMNT/lmnt/src/pages/list/list.ts",
+		"/home/kevin/GitHub/LMNT/lmnt/src/pages/list/list.html",
+		"/home/kevin/GitHub/LMNT/lmnt/src/pages/login/login.html",
+		"/home/kevin/GitHub/LMNT/lmnt/src/pages/home/home.ts",
+		"/home/kevin/GitHub/LMNT/lmnt/src/pages/home/home.html",
+		"/home/kevin/GitHub/LMNT/lmnt/src/app/app.component.ts",
+		"/home/kevin/GitHub/LMNT/lmnt/src/app/app.module.ts",
+		"/home/kevin/GitHub/ionic-starter-super/src/pages/login/login.ts",
+		"/home/kevin/GitHub/ionic-starter-super/src/app/app.component.ts",
+		"/home/kevin/Downloads/hackHarvard2017/index.html",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/list/list.ts",
+		"/home/kevin/GitHub/LMNT/lmnt/src/pages/home/login.html",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/item-details/item-details.html",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/item-details/item-details.scss",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/item-details/item-details.ts",
+		"/home/kevin/GitHub/MyIonicProject/src/pages/hello-ionic/hello-ionic.scss",
+		"/home/kevin/GitHub/HackHarvard2017/README.md",
+		"/home/kevin/GitHub/ionic-starter-super/src/app/app.module.ts",
+		"/home/kevin/GitHub/fbl/www/build/main.js",
+		"/home/kevin/GitHub/ionic-starter-super/src/app/main.ts",
+		"/home/kevin/GitHub/supertest/src/models/item.ts",
+		"/home/kevin/GitHub/LMNT/lmnt/src/app/app.scss",
+		"/home/kevin/GitHub/fbl/src/pages/home/home.ts",
+		"/home/kevin/Documents/codecon1.py",
+		"/home/kevin/Documents/Problem.java",
+		"/home/kevin/Documents/codecon/Problem.java",
+		"/home/kevin/GitHub/fbl/src/app/app.module.ts",
+		"/home/kevin/GitHub/fbl/src/pages/home/home.html",
+		"/home/kevin/Documents/BSE/flaskAPI/sample.py",
+		"/home/kevin/Documents/BSE/flaskAPI/api.py",
+		"/home/kevin/Documents/BSE/SatelliteTrackingPyOrbital/GSW-Sat-Tracking/satTrack.py",
+		"/home/kevin/Documents/COS126/PSET2-NBodySim/nbody/NBody.java",
+		"/home/kevin/Documents/CS17/hw04/school.rkt",
+		"/home/kevin/file",
+		"/home/kevin/Documents/BSE/ISSposition.py",
+		"/home/kevin/Documents/outputMicrosoft",
+		"/home/kevin/Documents/BSE/SatelliteTrackingPyOrbital/getLocation.py",
+		"/home/kevin/Documents/BSE/SatelliteTrackingPyOrbital/satTrack.py",
+		"/home/kevin/Documents/BSE/getLocation.py",
+		"/home/kevin/Documents/CS17/hw03/increment-all.rkt",
+		"/home/kevin/Documents/CS17/hw03/README.txt",
+		"/home/kevin/Documents/CS17/hw03/comparing-functions.txt",
+		"/home/kevin/Documents/CS17/hw03/function-growth.txt",
+		"/home/kevin/Documents/CS17/hw03/comparing-functions2.txt",
+		"/home/kevin/Documents/COS126/PSET2-NBodySim/NBody.java",
+		"/home/kevin/Documents/introcs.sh",
+		"/home/kevin/Documents/COS126/RandomWalker.java",
+		"/home/kevin/Documents/COS126/RandomWalkers.java",
+		"/home/kevin/Documents/COS126/testRand.java",
+		"/home/kevin/.profile",
+		"/home/kevin/.bashrc",
+		"/home/kevin/Documents/CS17/homework2/bnf.txt",
+		"/home/kevin/Documents/helloWorld.py"
+	],
+	"find":
+	{
+		"height": 46.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 46.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Test Google Form Reading-ad5a38d025a3.sublime-project",
+	"replace":
+	{
+		"height": 86.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 362.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
