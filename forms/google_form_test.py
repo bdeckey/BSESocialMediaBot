@@ -1,3 +1,6 @@
+# https://gspread.readthedocs.io/en/stable/#main-interface
+# http://pbpython.com/pandas-google-forms-part1.html
+
 from __future__ import print_function
 import gspread
 #from apiclient.discovery import build
