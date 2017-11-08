@@ -20,7 +20,7 @@ api = tweepy.API(auth)
 
 
 # Creating User for Instagram
-user, pwd = 'user', 'pass'
+# user, pwd = 'user', 'pass'
 InstagramAPI = InstagramAPI(user, pwd)
 InstagramAPI.login()  # login
 
