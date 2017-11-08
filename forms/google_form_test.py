@@ -33,4 +33,4 @@ response_spreadsheet = gc.open_by_key(sheet_id_list[0])
 worksheets_list = response_spreadsheet.worksheets()
 
 for row in worksheets_list[0].get_all_values():
-    print(row)
+    print(row)  
