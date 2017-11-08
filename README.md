@@ -8,6 +8,8 @@ gspread
 oauth2client 
 pandas 
 json 
+pyopenssl
+
 
 Checklist to download:
 - pip install -e git+https://github.com/LevPasha/Instagram-API-python.git#egg=InstagramAPI
