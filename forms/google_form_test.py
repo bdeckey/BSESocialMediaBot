@@ -7,6 +7,14 @@ import gspread
 from oauth2client.client import SignedJwtAssertionCredentials
 import pandas as pd
 import json
+import numpy as np
+
+# helpers
+
+def print_list_as_columns(l):
+    for entry in l:
+        print(entry, "| ", end="")
+    print()
 
 SCOPE = ["https://spreadsheets.google.com/feeds"]
 SECRETS_FILE = "secretKey.json"
@@ -33,4 +41,4 @@ response_spreadsheet = gc.open_by_key(sheet_id_list[0])
 worksheets_list = response_spreadsheet.worksheets()
 
 for row in worksheets_list[0].get_all_values():
-    print(row)  
+    print_list_as_columns(row)
