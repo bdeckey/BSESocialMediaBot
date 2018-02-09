@@ -60,3 +60,17 @@ if __name__ == "__main__":
 	print(worksheet_array)
 
 	print(worksheet_array.shape)
+
+	## Processing steps (URGENT):
+	## Determine what platforms to post to
+	## Extract the text that's going to be posted
+	## Verify who is posting
+	##	--> if unverified, move to unverified
+	##  --> else if last_post > __ minutes then post + move to posted
+	## 
+	## Processing steps (less urgent):
+	## Make 3 worksheets: pending, unverified, posted
+	## After posting, move to posted
+	## Return: Dict {String caption: ..., 
+	##				 String filename: ..., 
+	## 				 Dict {Twitter: boolean, Instagram: boolean, Facebook: boolean}}
