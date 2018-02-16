@@ -60,13 +60,34 @@ def get_text(post, text_index = 4):
 
 # takes in one row (one post) from the worksheet_array numpy array
 # returns that person's name as a string
-def get_person(post, text_index = 1):
-	return(post[text_index])
+def get_person(post, person_index = 1):
+	return(post[person_index])
 
 # takes in one row (one post) from the worksheet_array numpy array
 # returns that person's password as a string
-def get_pwd(post, text_index = 2):
-	return(post[text_index])
+def get_pwd(post, pwd_index = 2):
+	return(post[pwd_index])
+
+
+def get_img(post, img_url = 6):
+	'''
+	takes in one row (one post) from the worksheet_array numpy array 
+	returns that post's image as a string
+	'''
+	if not post[img_url]:
+		return None
+	return(post[img_url])
+
+def output(post):
+	'''
+	Inputs: one row (one post) from the worksheet_array numpy array 
+	Returns: Dict {String caption: ..., 
+					 String filename: ..., 		
+	 				 Dict {Twitter: boolean, Instagram: boolean, Facebook: boolean}}
+	'''
+	return({"caption": get_text(post), 
+		"filename": get_img(post), 
+		"which_platforms": get_platforms(post)})
 
 
 if __name__ == "__main__":
@@ -85,8 +106,8 @@ if __name__ == "__main__":
 	print(get_platforms(worksheet_array[2]))
 	print(get_platforms(worksheet_array[-1]))
 	print(get_text(worksheet_array[-1]))
-
 	print(worksheet_array.shape)
+	print(output(worksheet_array[-1]))
 
 
 	## Processing steps (URGENT):
@@ -100,5 +121,5 @@ if __name__ == "__main__":
 	## Make 3 worksheets: pending, unverified, posted
 	## After posting, move to posted
 	## Return: Dict {String caption: ..., 
-	##				 String filename: ..., 
+	##				 String filename: ..., 		
 	## 				 Dict {Twitter: boolean, Instagram: boolean, Facebook: boolean}}
