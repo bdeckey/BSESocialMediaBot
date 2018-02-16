@@ -9,34 +9,46 @@
 # account settings, this script will tweet at twitter.com/lacunybot
 
 # Importing directories
-import tweepy, time, sys
+import tweepy, time, sys, facebook
 from credentials import *
 from InstagramAPI import InstagramAPI
 
-# Creating User for Twitter
+# Creating User Authentification for Twitter
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 
-# Creating User for Instagram
+# Creating User Authentification for Instagram
 # user, pwd = 'user', 'pass'
 InstagramAPI = InstagramAPI(user, pwd)
 InstagramAPI.login()  # login
 
+# Creating User Authentification for Facebook
+cfg = {
+    "page_id"      : page_id,  # Step 1
+    "access_token" : access_token   # Step 3
+    }
 
 # What the bot will tweet and post.
 image1 = input('File: ')
-message = input('Tell me what to say: ')
+message1 = input('Tell me what to say: ')
 
 if image1 == "" :
 
 # Post on Instagram
-InstagramAPI.uploadPhoto(image1, message)
+InstagramAPI.uploadPhoto(image1, message1)
 
 
 # Post on Twitter
-api.update_with_media(image1, status=message)
+api.update_with_media(image1, status=message1)
+
+
+# Post on Facebook
+graph = facebook.GraphAPI(access_token=access_token, version="2.7")
+with open(image1) as image_ref:
+    status = graph.put_photo(image=image_ref,
+             message=message1)
 
 
 # tweetlist = ['First Meeting!!!', 'Went great!']

@@ -29,6 +29,8 @@ for sheet in gc.openall():
     sheet_id_list.append(sheet.id)
 
 response_spreadsheet = gc.open_by_key(sheet_id_list[0])
+#h ttps://stackoverflow.com/questions/33713084/download-link-for-google-spreadsheets-csv-export-with-multiple-sheets
+response_csv = "https://docs.google.com/spreadsheets/d/1AX8I4ts1VPyyCDxizclkyIvVHNz1M43ae2YxZANK4pQ/gviz/tq?tqx=out:csv&sheet={sheetname}"
 
 worksheets_list = response_spreadsheet.worksheets()
 
