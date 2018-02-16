@@ -29,6 +29,7 @@ InstagramAPI.login()  # login
 image1 = input('File: ')
 message = input('Tell me what to say: ')
 
+if image1 == "" :
 
 # Post on Instagram
 InstagramAPI.uploadPhoto(image1, message)
