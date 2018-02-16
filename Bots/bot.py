@@ -24,35 +24,44 @@ api = tweepy.API(auth)
 InstagramAPI = InstagramAPI(user, pwd)
 InstagramAPI.login()  # login
 
+
 # Creating User Authentification for Facebook
 cfg = {
     "page_id"      : page_id,  # Step 1
     "access_token" : access_token   # Step 3
-    }
+}
+# graph = facebook.GraphAPI(access_token=access_token, version="2.7")
+graph = facebook.GraphAPI(cfg['access_token'])
+# Get page token to post as the page. You can skip
+# the following if you want to post as yourself.
+resp = graph.get_object('me/accounts')
+page_access_token = None
+for page in resp['data']:
+    if page['id'] == cfg['page_id']:
+        page_access_token = page['access_token']
+graph = facebook.GraphAPI(page_access_token)
 
-# What the bot will tweet and post.
+
+
+# What the bot will tweet and post, do not use quotes
 image1 = input('File: ')
 message1 = input('Tell me what to say: ')
 
 if image1 == "" :
-
-# Post on Instagram
-InstagramAPI.uploadPhoto(image1, message1)
-
-
-# Post on Twitter
-api.update_with_media(image1, status=message1)
-
-
-# Post on Facebook
-graph = facebook.GraphAPI(access_token=access_token, version="2.7")
-with open(image1) as image_ref:
-    status = graph.put_photo(image=image_ref,
-             message=message1)
+    api.update_status(status=message1);
+    graph.put_object(parent_object='me', connection_name='feed', message=message1)
+else:
+    # Post on Instagram
+    InstagramAPI.uploadPhoto(image1, message1)
+    # Post on Twitter
+    api.update_with_media(image1, status=message1)
+    # Post on Facebook
+    with open(image1) as image_ref:
+        graph.put_photo(image=image_ref, message=message1)
 
 
 # tweetlist = ['First Meeting!!!', 'Went great!']
-
+#/Users/BDeckey/Desktop/BSESocialMediaBot/Bots/Blastoff.jpg
 
 # for line in tweetlist:
 #     api.update_status(line)
