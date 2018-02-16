@@ -46,6 +46,29 @@ def print_worksheet(a_worksheet):
 	for row in a_worksheet.get_all_values():
 	    print_list_as_columns(row)
 
+# takes in one row (one post) from the worksheet_array numpy array
+# returns Dict {Twitter: boolean, Instagram: boolean, Facebook: boolean}
+def get_platforms(post, social_media_index = 3):
+	return({"Twitter": ("Twitter" in post[social_media_index]),
+		"Instagram": ("Instagram" in post[social_media_index]),
+		"Facebook": ("Facebook" in post[social_media_index])})
+
+# takes in one row (one post) from the worksheet_array numpy array
+# returns that text as a string
+def get_text(post, text_index = 4):
+	return(post[text_index])
+
+# takes in one row (one post) from the worksheet_array numpy array
+# returns that person's name as a string
+def get_person(post, text_index = 1):
+	return(post[text_index])
+
+# takes in one row (one post) from the worksheet_array numpy array
+# returns that person's password as a string
+def get_pwd(post, text_index = 2):
+	return(post[text_index])
+
+
 if __name__ == "__main__":
 	our_client = authorize_account()
 	spreadsheet_refs_list = our_client.openall()
@@ -58,8 +81,13 @@ if __name__ == "__main__":
 	print_worksheet(worksheet_ref)
 	worksheet_array = np.array(worksheet_ref.get_all_values())
 	print(worksheet_array)
+	print(get_platforms(worksheet_array[1]))
+	print(get_platforms(worksheet_array[2]))
+	print(get_platforms(worksheet_array[-1]))
+	print(get_text(worksheet_array[-1]))
 
 	print(worksheet_array.shape)
+
 
 	## Processing steps (URGENT):
 	## Determine what platforms to post to
