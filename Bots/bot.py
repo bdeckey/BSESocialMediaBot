@@ -12,32 +12,38 @@
 import tweepy, time, sys
 from credentials import *
 from InstagramAPI import InstagramAPI
+from PIL import Image
 
-# Creating User for Twitter
-auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
-api = tweepy.API(auth)
+import requests
 
-
-# Creating User for Instagram
-# user, pwd = 'user', 'pass'
-InstagramAPI = InstagramAPI(user, pwd)
-InstagramAPI.login()  # login
-
-
-# What the bot will tweet and post.
-image1 = input('File: ')
-message = input('Tell me what to say: ')
-
+def convertToJPG(image):
+	im = Image.open(image)
+	rgb_im = im.convert('RGB')
+	imageJPG = image.split(".")[0] + ".jpg"
+	rgb_im.save(imageJPG)
+	return imageJPG
 
 # Post on Instagram
-InstagramAPI.uploadPhoto(image1, message)
+def uploadInstagram(image, message):
+	# Creating User for Instagram
+	# user, pwd = 'user', 'pass'
+	insta = InstagramAPI(user, pwd)
+	insta.login()  # login
+	if image.split(".")[1] is not "jpg":
+		image = convertToJPG(image)
+	insta.uploadPhoto(image, message)
 
 
 # Post on Twitter
-api.update_with_media(image1, status=message)
+def uploadTwitter(image, message):
+	# Creating User for Twitter
+	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+	auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+	api = tweepy.API(auth)
+	api.update_with_media(image, status=message)
 
-
+# uploadInstagram("cats.jpg", "asdf")
+# uploadInstagram("https://drive.google.com/open?id=0B2XWKkYW7FwWVkxKczJxYlJGbXM", "hello")
 # tweetlist = ['First Meeting!!!', 'Went great!']
 
 
