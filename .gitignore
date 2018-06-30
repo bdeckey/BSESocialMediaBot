@@ -1,4 +1,7 @@
 client_secrets.json
 secretKey.json
 credentials.py
+mycreds.txt
+*.ipynb
 *.pyc
+_pycache_

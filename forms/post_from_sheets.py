@@ -4,13 +4,15 @@
 from __future__ import print_function
 import gspread
 import json
+import StringIO
+import httplib2
+
+from apiclient import discovery
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-from Bots.bot import uploadTwitter, uploadInstagram
-import StringIO
-from apiclient import discovery
 from oauth2client.service_account import ServiceAccountCredentials
-import httplib2
+
+from Bots.bot import uploadTwitter, uploadInstagram
 
 # returns instance of Client after authorization
 def authorize_account():
@@ -35,7 +37,6 @@ def authorize_account():
 #     our_client.login()
     return our_client
 
-
 # gets all sheet ids in Client instance
 # DEPRECATED
 def get_spreadsheet_ids(our_client):
@@ -47,20 +48,6 @@ def get_spreadsheet_ids(our_client):
 # gets only sheet in Client instance
 def get_spreadsheets(our_client):
     return our_client.openall()
-
-
-# prints all sheets in Client instance
-def print_spreadsheets(all_spreadsheets):
-    print("The following sheets are available")
-    for sheet in all_spreadsheets:
-        print("{} - {}".format(sheet.title, sheet.id))
-
-# prints every row of a worksheet
-def print_worksheet(our_client, a_worksheet_id):
-    response_spreadsheet = our_client.open_by_key(a_worksheet)
-    worksheets_list = response_spreadsheet.worksheets()
-    for row in worksheets_list[0].get_all_values():
-        print_list_as_columns(row)
 
 def get_message(next_post, index = 4):
     return next_post[index]
@@ -76,6 +63,11 @@ def get_which_accts(next_post, index = 3):
 
 def make_post(message, image, 
               which_accts = {"Twitter": True, "Facebook": True, "Instagram": True}):
+    """
+    Method to post message and image to desired social media accounts.
+    Inputs: message, a String
+            image, the filename of desired image to be posted
+    """
     if which_accts.get("Twitter", False):
     	print("UPLOADING Twitter")
         uploadTwitter(image, message)
@@ -84,25 +76,53 @@ def make_post(message, image,
     	print("image name: " + image)
     	print("message:" + message)
         uploadInstagram(image, message)
+    # if which_accts.get("Facebook", False):
+    #     print("UPLOADING Facebook")
+    #     uploadFacebook(image, message) # this method doesn't exist sadly
 
 def getImageFromURL(drive_url):
-	id = drive_url.split("id=")[1]
-	gauth = GoogleAuth()
-	# Create local webserver which automatically handles authentication.
-	gauth.LocalWebserverAuth()
-	# Create GoogleDrive instance with authenticated GoogleAuth instance.
-	drive = GoogleDrive(gauth)
-	# Initialize GoogleDriveFile instance with file id.
-	file_obj = drive.CreateFile({'id': id})
-	file_obj.GetContentFile('cats.png') # Download file as 'cats.png'.
+    """
+    Method to download image from drive_url as the name "pic.png"
+    Input: drive_url, a String representing the Google Drive location of the 
+            uploaded image
+    Output: filename, String of the image id with .png filetype at end (ex: "0B2XWKkYW7FwWbnNwZ1dLWVJNbWs.png")
+    """
+
+    # return None when drive_url is empty String
+    if not drive_url:
+        return None
+
+    id = drive_url.split("id=")[1]
+
+    # courtesy of https://stackoverflow.com/questions/24419188/automating-pydrive-verification-process
+    gauth = GoogleAuth()
+    # Try to load saved client credentials
+    gauth.LoadCredentialsFile("mycreds.txt")
+    if gauth.credentials is None:
+        # Authenticate if they're not there
+        gauth.LocalWebserverAuth()
+    elif gauth.access_token_expired:
+        # Refresh them if expired
+        gauth.Refresh()
+    else:
+        # Initialize the saved creds
+        gauth.Authorize()
+    # Save the current credentials to a file
+    gauth.SaveCredentialsFile("mycreds.txt")
+    drive = GoogleDrive(gauth)
+    file_obj = drive.CreateFile({'id': id})
+    image_name = id + ".png"
+    file_obj.GetContentFile(image_name) # Download file as '<id>.png'.
+
+    # return image name
+    return image_name
 
 if __name__ == "__main__":
-
 	# authorize account, open spreadsheet, initialization stuff
     our_client = authorize_account()
     spreadsheet = our_client.openall()[0]
     queued_post_worksheet = spreadsheet.worksheet("Queued Responses")
-
+    
     # get next post
     all_queued_posts = queued_post_worksheet.get_all_values()
     next_post = all_queued_posts[1]
@@ -111,10 +131,9 @@ if __name__ == "__main__":
     which_accts = get_which_accts(next_post)
     message = get_message(next_post)
     image_drive_url = get_image(next_post)
-    getImageFromURL(image_drive_url)
     
-    # set image name
-    image = "cats.png"
+    # download image, set image name
+    image_name = getImageFromURL(image_drive_url)
 
     # make post
-    make_post(message, image, which_accts)
+    make_post(message, image_name, which_accts)

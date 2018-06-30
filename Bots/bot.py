@@ -27,11 +27,18 @@ def convertToJPG(image):
 def uploadInstagram(image, message):
 	# Creating User for Instagram
 	# user, pwd = 'user', 'pass'
-	insta = InstagramAPI(user, pwd)
-	insta.login()  # login
-	if image.split(".")[1] is not "jpg":
-		image = convertToJPG(image)
-	insta.uploadPhoto(image, message)
+	if image is not None:
+		insta = InstagramAPI(user, pwd)
+		insta.login()  # login
+		if image.split(".")[1] is not "jpg":
+			image = convertToJPG(image)
+		insta.uploadPhoto(image, message)
+	else:
+		# we should probably handle this better, either by posting a generic
+		# BSE image with it or at least properly throwing exception here
+		# and catching that in make_post from post_from_sheets.py
+		print("No image - no upload to instagram!")
+
 
 
 # Post on Twitter
@@ -40,7 +47,12 @@ def uploadTwitter(image, message):
 	auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 	auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 	api = tweepy.API(auth)
-	api.update_with_media(image, status=message)
+	if image is None:
+		# no image, just tweet status
+		api.update_status(message)
+	else:
+		# with image, post image and status
+		api.update_with_media(image, status=message)
 
 # uploadInstagram("cats.jpg", "asdf")
 # uploadInstagram("https://drive.google.com/open?id=0B2XWKkYW7FwWVkxKczJxYlJGbXM", "hello")
