@@ -110,6 +110,7 @@ def getImageFromURL(drive_url):
     # Save the current credentials to a file
     gauth.SaveCredentialsFile("mycreds.txt")
     drive = GoogleDrive(gauth)
+    
     file_obj = drive.CreateFile({'id': id})
     image_name = id + ".png"
     file_obj.GetContentFile(image_name) # Download file as '<id>.png'.
