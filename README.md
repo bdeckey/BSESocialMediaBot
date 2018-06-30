@@ -24,9 +24,12 @@ Using googleforms, Instagram, Twitter, and Facebook API's this bot will be able 
 # How to run:
 At the moment, go in the root directory of this repo and run `python -m forms.post_from_sheets`. This will post to both Twitter and Instagram the most recent submission to the Google Form.
 
+There's a good chance that at some point auth errors might occur.
+
 #TODOs:
-1. Make posting to Facebook work.
-2. Move posts to the "Posted" sheet.
-3. Move all this to work on a server.
-4. Clean up stuff/catch possible exceptions, etc.
+1. Actually figuring out auth.
+2. Make posting to Facebook work.
+3. Move posts to the "Posted" sheet.
+4. Move all this to work on a server.
+5. Clean up stuff/catch possible exceptions, etc.
 
