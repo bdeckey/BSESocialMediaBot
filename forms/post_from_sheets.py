@@ -11,9 +11,10 @@ from apiclient import discovery
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from oauth2client.service_account import ServiceAccountCredentials
+from time import sleep
 
 from Bots.bot import uploadTwitter, uploadInstagram
-
+from forms.getFirstNonemptyPostIndex import get_first_nonempty_post_index
 # returns instance of Client after authorization
 def authorize_account():
     # setup variables for reading
@@ -73,8 +74,6 @@ def post_to_social_media(message, image,
         uploadTwitter(image, message)
     if which_accts.get("Instagram", False):
     	print("UPLOADING INSTAGRAM")
-    	print("image name: " + image)
-    	print("message:" + message)
         uploadInstagram(image, message)
     # if which_accts.get("Facebook", False):
     #     print("UPLOADING Facebook")
@@ -131,13 +130,11 @@ def post(next_post):
     post_to_social_media(message, image_name, which_accts)
     print("Finished posting to social media.")
 
-def move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post):
+def move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post, first_nonempty_post_index):
     posted_worksheet.append_row(next_post)
-    print("Appended last post to \"Posted\" worksheet")
-    queued_worksheet.delete_row(2) # 2 is the first row with data
-    print("Removed last post from \"Queued Responses\" worksheet")
-
-
+    print("Appended last post to \"Posted\" worksheet.")
+    queued_worksheet.delete_row(first_nonempty_post_index) # the first row with data
+    print("Removed last post from \"Queued Responses\" worksheet.")
 
 if __name__ == "__main__":
     spreadsheet_key = "1AX8I4ts1VPyyCDxizclkyIvVHNz1M43ae2YxZANK4pQ"
@@ -148,8 +145,18 @@ if __name__ == "__main__":
     posted_worksheet = spreadsheet.worksheet("Posted")
     unverified_worksheet = spreadsheet.worksheet("Unverified")
 
-    # get next post
-    all_queued_posts = queued_worksheet.get_all_values()
-    next_post = all_queued_posts[1]
-    post(next_post)
-    move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post)
+    while True:
+        print("Starting scan of spreadsheet.")
+        # get next post
+        all_queued_posts = queued_worksheet.get_all_values()
+        # all_queued_posts = list(filter(lambda resp: resp[0], all_queued_posts))
+        # print(all_queued_posts)
+        if len(all_queued_posts) > 1:
+            # only try to post something if there are queued posts
+            first_nonempty_post_index = get_first_nonempty_post_index(all_queued_posts)
+            print("Found sheet! Starting post process.")
+            next_post = all_queued_posts[first_nonempty_post_index]
+            post(next_post)
+            move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post, first_nonempty_post_index + 1)
+        print("Sleeping for 10 seconds.")
+        sleep(10)
