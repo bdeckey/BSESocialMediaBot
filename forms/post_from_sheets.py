@@ -61,7 +61,7 @@ def get_which_accts(next_post, index = 3):
            "Facebook": "Facebook" in which_accts_str,
            "Instagram": "Instagram" in which_accts_str}
 
-def make_post(message, image, 
+def post_to_social_media(message, image, 
               which_accts = {"Twitter": True, "Facebook": True, "Instagram": True}):
     """
     Method to post message and image to desired social media accounts.
@@ -80,7 +80,7 @@ def make_post(message, image,
     #     print("UPLOADING Facebook")
     #     uploadFacebook(image, message) # this method doesn't exist sadly
 
-def getImageFromURL(drive_url):
+def get_image_from_url(drive_url):
     """
     Method to download image from drive_url as the name "pic.png"
     Input: drive_url, a String representing the Google Drive location of the 
@@ -110,7 +110,7 @@ def getImageFromURL(drive_url):
     # Save the current credentials to a file
     gauth.SaveCredentialsFile("mycreds.txt")
     drive = GoogleDrive(gauth)
-    
+
     file_obj = drive.CreateFile({'id': id})
     image_name = id + ".png"
     file_obj.GetContentFile(image_name) # Download file as '<id>.png'.
@@ -118,23 +118,38 @@ def getImageFromURL(drive_url):
     # return image name
     return image_name
 
-if __name__ == "__main__":
-	# authorize account, open spreadsheet, initialization stuff
-    our_client = authorize_account()
-    spreadsheet = our_client.openall()[0]
-    queued_post_worksheet = spreadsheet.worksheet("Queued Responses")
-    
-    # get next post
-    all_queued_posts = queued_post_worksheet.get_all_values()
-    next_post = all_queued_posts[1]
-
+def post(next_post):
     # get necessary info
     which_accts = get_which_accts(next_post)
     message = get_message(next_post)
     image_drive_url = get_image(next_post)
     
     # download image, set image name
-    image_name = getImageFromURL(image_drive_url)
+    image_name = get_image_from_url(image_drive_url)
 
     # make post
-    make_post(message, image_name, which_accts)
+    post_to_social_media(message, image_name, which_accts)
+    print("Finished posting to social media.")
+
+def move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post):
+    posted_worksheet.append_row(next_post)
+    print("Appended last post to \"Posted\" worksheet")
+    queued_worksheet.delete_row(2) # 2 is the first row with data
+    print("Removed last post from \"Queued Responses\" worksheet")
+
+
+
+if __name__ == "__main__":
+    spreadsheet_key = "1AX8I4ts1VPyyCDxizclkyIvVHNz1M43ae2YxZANK4pQ"
+	# authorize account, open spreadsheet, get worksheets
+    our_client = authorize_account()
+    spreadsheet = our_client.open_by_key(spreadsheet_key)
+    queued_worksheet = spreadsheet.worksheet("Queued Responses")
+    posted_worksheet = spreadsheet.worksheet("Posted")
+    unverified_worksheet = spreadsheet.worksheet("Unverified")
+
+    # get next post
+    all_queued_posts = queued_worksheet.get_all_values()
+    next_post = all_queued_posts[1]
+    post(next_post)
+    move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post)
