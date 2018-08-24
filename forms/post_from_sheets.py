@@ -70,10 +70,10 @@ def post_to_social_media(message, image,
             image, the filename of desired image to be posted
     """
     if which_accts.get("Twitter", False):
-    	print("UPLOADING Twitter")
+        print("UPLOADING Twitter")
         uploadTwitter(image, message)
     if which_accts.get("Instagram", False):
-    	print("UPLOADING INSTAGRAM")
+        print("UPLOADING INSTAGRAM")
         uploadInstagram(image, message)
     # if which_accts.get("Facebook", False):
     #     print("UPLOADING Facebook")
@@ -136,9 +136,10 @@ def move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post,
     queued_worksheet.delete_row(first_nonempty_post_index) # the first row with data
     print("Removed last post from \"Queued Responses\" worksheet.")
 
-if __name__ == "__main__":
+
+def main():
     spreadsheet_key = "1AX8I4ts1VPyyCDxizclkyIvVHNz1M43ae2YxZANK4pQ"
-	# authorize account, open spreadsheet, get worksheets
+    # authorize account, open spreadsheet, get worksheets
     our_client = authorize_account()
     spreadsheet = our_client.open_by_key(spreadsheet_key)
     queued_worksheet = spreadsheet.worksheet("Queued Responses")
@@ -160,3 +161,6 @@ if __name__ == "__main__":
             move_post_to_posted_worksheet(queued_worksheet, posted_worksheet, next_post, first_nonempty_post_index + 1)
         print("Sleeping for 10 seconds.")
         sleep(10)
+
+if __name__ == "__main__":
+    main()
