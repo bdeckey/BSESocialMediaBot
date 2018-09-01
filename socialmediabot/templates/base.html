@@ -1,0 +1,31 @@
+<!doctype html>
+<head>
+    {% if title %}
+    <title>{{title}}</title>
+    {% else %}
+    <title>Welcome to BSE Social Media Bot!</title>
+    {% endif %}
+</head>
+
+<body>
+    <div>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+            {% if current_user.is_anonymous %}
+            <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% else %}
+            <li><a href="{{ url_for('user', username = current_user.username) }}">Profile</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <div>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+
+</body>

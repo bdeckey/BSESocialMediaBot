@@ -5,4 +5,5 @@ credentials*
 mycreds.txt
 *.ipynb
 *.pyc
+*.idea
 _pycache_
